@@ -13,7 +13,11 @@
 		video: true,
 		audio: true
 	},function(stream){
-		video.src= vendorUrl.createObjectURL(stream);
+		try{
+			video.srcObject = stream;
+		} catch (error){
+			video.src = vendorUrl.createObjectURL(stream);
+		}
 		video.play();
 	},function(error){
 		//An error ocurred
